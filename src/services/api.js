@@ -3,6 +3,11 @@ import axios from 'axios'
 // Base URL for backend API - use environment variable or default to localhost
 const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '/expense-tracker-api' : 'http://localhost:8086/expense-tracker-api')
 
+// Debug logging for API URL
+console.log('API Base URL:', API_BASE_URL)
+console.log('Environment:', import.meta.env.MODE)
+console.log('Production:', import.meta.env.PROD)
+
 // Create axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -92,6 +97,25 @@ export const analyticsAPI = {
   getCategorySpending: (params) => api.get('/analytics/category-spending', { params }),
   getMonthlyTrend: (params) => api.get('/analytics/monthly-trend', { params }),
   getBudgetStatus: () => api.get('/analytics/budget-status'),
+}
+
+// Recurring Transaction API
+export const recurringTransactionAPI = {
+  getAll: () => api.get('/recurring-transactions'),
+  getActive: () => api.get('/recurring-transactions/active'),
+  getById: (id) => api.get(`/recurring-transactions/${id}`),
+  create: (data) => api.post('/recurring-transactions', data),
+  update: (id, data) => api.put(`/recurring-transactions/${id}`, data),
+  delete: (id) => api.delete(`/recurring-transactions/${id}`),
+  toggle: (id) => api.post(`/recurring-transactions/${id}/toggle`),
+  execute: (id) => api.post(`/recurring-transactions/${id}/execute`),
+}
+
+// User Profile API
+export const profileAPI = {
+  get: () => api.get('/profile'),
+  update: (data) => api.put('/profile', data),
+  changePassword: (data) => api.post('/profile/change-password', data),
 }
 
 export default api

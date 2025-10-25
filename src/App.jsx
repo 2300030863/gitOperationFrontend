@@ -6,10 +6,12 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Transactions from './pages/Transactions'
+import RecurringTransactions from './pages/RecurringTransactions'
 import Categories from './pages/Categories'
 import Accounts from './pages/Accounts'
 import Budgets from './pages/Budgets'
 import Reports from './pages/Reports'
+import Profile from './pages/Profile'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -68,10 +70,12 @@ function App() {
               <Route index element={<Navigate to="/dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="transactions" element={<Transactions />} />
+              <Route path="recurring-transactions" element={<RecurringTransactions />} />
               <Route path="categories" element={<Categories />} />
               <Route path="accounts" element={<Accounts />} />
               <Route path="budgets" element={<Budgets />} />
               <Route path="reports" element={<Reports />} />
+              <Route path="profile" element={<Profile />} />
             </Route>
           </Routes>
           <Toaster position="top-right" />

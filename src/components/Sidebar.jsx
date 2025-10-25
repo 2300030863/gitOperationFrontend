@@ -6,6 +6,8 @@ import {
   Wallet, 
   Target, 
   BarChart3,
+  Repeat,
+  User,
   Menu,
   X
 } from 'lucide-react'
@@ -14,10 +16,12 @@ import { useState } from 'react'
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Transactions', href: '/transactions', icon: CreditCard },
+  { name: 'Recurring', href: '/recurring-transactions', icon: Repeat },
   { name: 'Categories', href: '/categories', icon: Tag },
   { name: 'Accounts', href: '/accounts', icon: Wallet },
   { name: 'Budgets', href: '/budgets', icon: Target },
   { name: 'Reports', href: '/reports', icon: BarChart3 },
+  { name: 'Profile', href: '/profile', icon: User },
 ]
 
 function Sidebar() {
