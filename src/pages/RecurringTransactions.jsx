@@ -63,7 +63,7 @@ function RecurringTransactions() {
     if (!formData.amount || formData.amount <= 0) {
       errors.amount = 'Amount must be greater than 0'
     } else if (formData.amount > 999999.99) {
-      errors.amount = 'Amount must be less than $999,999.99'
+      errors.amount = 'Amount must be less than ₹9,99,999.99'
     }
     
     // Date validation
@@ -204,9 +204,9 @@ function RecurringTransactions() {
   }
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'INR'
     }).format(amount)
   }
 
@@ -456,7 +456,7 @@ function RecurringTransactions() {
                   Amount <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-2 text-gray-500">₹</span>
                   <input
                     type="number"
                     step="0.01"
@@ -668,7 +668,7 @@ function RecurringTransactions() {
                   <h4 className="font-semibold text-gray-900 mb-2">Transaction Summary</h4>
                   <div className="text-sm text-gray-700 space-y-1">
                     <p><strong>Description:</strong> {formData.description}</p>
-                    <p><strong>Amount:</strong> ${formData.amount} ({formData.type})</p>
+                    <p><strong>Amount:</strong> ₹{formData.amount} ({formData.type})</p>
                     <p><strong>Frequency:</strong> {getRecurrenceLabel(formData.recurrenceType)}</p>
                     <p><strong>Starts:</strong> {formData.startDate ? format(new Date(formData.startDate), 'MMM dd, yyyy') : 'Not set'}</p>
                     {formData.endDate && (

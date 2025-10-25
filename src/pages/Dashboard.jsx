@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'
 import { analyticsAPI } from '../services/api'
-import { DollarSign, TrendingUp, TrendingDown, AlertTriangle } from 'lucide-react'
+import { TrendingUp, TrendingDown, AlertTriangle, Wallet } from 'lucide-react'
 import { format } from 'date-fns'
 import toast from 'react-hot-toast'
 
@@ -38,9 +38,9 @@ function Dashboard() {
   }
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'INR'
     }).format(amount || 0)
   }
 
@@ -120,7 +120,7 @@ function Dashboard() {
         <div className="card">
           <div className="flex items-center">
             <div className={`p-2 rounded-lg ${(dashboardData?.netAmount || 0) >= 0 ? 'bg-green-100' : 'bg-red-100'}`}>
-              <DollarSign className={`w-6 h-6 ${(dashboardData?.netAmount || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`} />
+              <Wallet className={`w-6 h-6 ${(dashboardData?.netAmount || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`} />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Net Amount</p>
