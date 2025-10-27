@@ -315,7 +315,29 @@ function RecurringTransactions() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {recurringTransactions.map((transaction) => (
+              {recurringTransactions.length === 0 ? (
+                <tr>
+                  <td colSpan="7" className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Repeat className="text-gray-400 mb-4" size={48} />
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">No recurring transactions</h3>
+                      <p className="text-gray-500 mb-4">Get started by creating your first recurring transaction.</p>
+                      <button
+                        onClick={() => {
+                          resetForm()
+                          setEditingTransaction(null)
+                          setShowModal(true)
+                        }}
+                        className="btn-primary flex items-center"
+                      >
+                        <Plus size={20} className="mr-2" />
+                        Add Recurring Transaction
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                recurringTransactions.map((transaction) => (
                 <tr key={transaction.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
@@ -395,7 +417,8 @@ function RecurringTransactions() {
                     </div>
                   </td>
                 </tr>
-              ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>

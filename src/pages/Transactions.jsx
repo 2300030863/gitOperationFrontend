@@ -261,7 +261,35 @@ function Transactions() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {transactions.map((transaction) => (
+              {transactions.length === 0 ? (
+                <tr>
+                  <td colSpan="7" className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Search className="text-gray-400 mb-4" size={48} />
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">No transactions found</h3>
+                      <p className="text-gray-500 mb-4">
+                        {Object.values(filters).some(v => v) 
+                          ? "Try adjusting your filters or create a new transaction." 
+                          : "Get started by creating your first transaction."}
+                      </p>
+                      {!Object.values(filters).some(v => v) && (
+                        <button
+                          onClick={() => {
+                            resetForm()
+                            setEditingTransaction(null)
+                            setShowModal(true)
+                          }}
+                          className="btn-primary flex items-center"
+                        >
+                          <Plus size={20} className="mr-2" />
+                          Add Transaction
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                transactions.map((transaction) => (
                 <tr key={transaction.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {format(new Date(transaction.transactionDate), 'MMM dd, yyyy')}
@@ -318,7 +346,8 @@ function Transactions() {
                     </div>
                   </td>
                 </tr>
-              ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>

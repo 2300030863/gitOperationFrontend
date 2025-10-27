@@ -44,8 +44,11 @@ function PublicRoute({ children }) {
 function App() {
   console.log('App component rendering...')
   
-  // Use base path for production, root for development
+  // Use base path for production deployment (Docker), root for development
+  // In production/Docker, the app is served from /expense-tracker
   const basename = import.meta.env.PROD ? '/expense-tracker' : '/'
+  
+  console.log('Router basename:', basename)
   
   return (
     <AuthProvider>
